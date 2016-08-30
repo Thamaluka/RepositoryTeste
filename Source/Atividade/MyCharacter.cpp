@@ -72,18 +72,23 @@ void AMyCharacter::SetupPlayerInputComponent(class UInputComponent* InputCompone
 
 
 void AMyCharacter::MoveForward(float Value) {
-	
-		FVector Forward(1, 0, 0);
-		AddMovementInput(Forward, Value);
+
+	FVector PosAtual = GetActorLocation();
+	FVector Frente = GetActorForwardVector();
+	SetActorLocation(PosAtual + (Frente*Value) * 10);
+
 }
 
 void AMyCharacter::MoveRight(float Value) {
+
 		FVector Right(0, 1, 0);
 		AddMovementInput(Right, Value);
-
+/*
 		FRotator Atual = MeshComp->GetComponentRotation();
-		FRotator PosZ = FRotator::MakeFromEuler(FVector(0, 0, 1));
+		FRotator PosZ = FRotator::MakeFromEuler(FVector(0, 0,1));
 		MeshComp->SetWorldRotation(Atual + (PosZ * Value * 10));
+		ArrowComp->SetWorldRotation(Atual + (PosZ * Value * 10));
+		*/
 }
 
 void AMyCharacter::StartRun() {
@@ -135,7 +140,7 @@ void AMyCharacter::DropProjectile() {
 
 void AMyCharacter::Turn(float Value) {
 	AddControllerYawInput(Value);
-	FRotator NewRotation = MeshComp->GetComponentRotation();
+	FRotator NewRotation = ArrowComp->GetComponentRotation();
 	NewRotation.Yaw += Value;
-	MeshComp->SetWorldRotation(NewRotation);
+	ArrowComp->SetWorldRotation(NewRotation);
 }

@@ -29,7 +29,7 @@ private:
 	UPROPERTY(VisibleAnywhere, Category = Tick)
 		float RunningTime;
 	UPROPERTY(EditAnywhere)
-		bool side;
+		int side;
 
 	UPROPERTY(EditAnywhere)
 		float DamageAmount = 10;

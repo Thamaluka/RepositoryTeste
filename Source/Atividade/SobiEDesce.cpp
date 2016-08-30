@@ -12,7 +12,7 @@ ASobiEDesce::ASobiEDesce()
 	Root = CreateDefaultSubobject<USphereComponent>(TEXT("Root"));
 	Root->OnComponentBeginOverlap.AddDynamic(this, &ASobiEDesce::OnOverlapBegin);
 	RootComponent = Root;
-	side = false;
+	side = 0;
 	MeshComp = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("MeshComp"));
 	MeshComp->AttachTo(RootComponent);
 }
@@ -30,15 +30,21 @@ void ASobiEDesce::Tick( float DeltaTime )
 	
 	Super::Tick( DeltaTime );
 	FVector LocalizacaoAtual = GetActorLocation();
-	if (side) {
+	if (side==1) {
 		float DeltaHeight = (FMath::Sin(RunningTime + DeltaTime) - FMath::Sin(RunningTime));
-		LocalizacaoAtual.X += DeltaHeight * 400.0f;
+		LocalizacaoAtual.Z += DeltaHeight * 100.0f;
+		RunningTime += DeltaTime;
+		SetActorLocation(LocalizacaoAtual);
+	}
+	else if (side == 2) {
+		float DeltaHeight = (FMath::Sin(RunningTime + DeltaTime) - FMath::Sin(RunningTime));
+		LocalizacaoAtual.X -= DeltaHeight * 200.0f;
 		RunningTime += DeltaTime;
 		SetActorLocation(LocalizacaoAtual);
 	}
 	else {
 		float DeltaHeight = (FMath::Sin(RunningTime + DeltaTime) - FMath::Sin(RunningTime));
-		LocalizacaoAtual.X -= DeltaHeight * 200.0f;
+		LocalizacaoAtual.Y -= DeltaHeight * 200.0f;
 		RunningTime += DeltaTime;
 		SetActorLocation(LocalizacaoAtual);
 	}
