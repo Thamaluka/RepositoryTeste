@@ -32,10 +32,10 @@ void AMyHUD::DrawHUD() {
 	FVector2D ScreenDimensions = FVector2D(Canvas->SizeX,Canvas->SizeY);
 	
 	AMyCharacter* MyCharacter = Cast<AMyCharacter>(UGameplayStatics::GetPlayerPawn(this, 0));
-	AColetavel* Coletavel = Cast<AColetavel>(UGameplayStatics::GetPlayerPawn(this,0));
+	//AColetavel* Coletavel = Cast<AColetavel>(UGameplayStatics::GetPlayerPawn(this,0));
 
 	FString LifeString = FString::Printf(TEXT("Life: %d"),MyCharacter->GetLife());
-	FString Coletaveis = FString::Printf(TEXT("Coletaveis: %d"), Coletavel->GetQntColeta());
+//	FString Coletaveis = FString::Printf(TEXT("Coletaveis: %d"), Coletavel->GetQntColeta());
 
 
 	//Vidas Personagem
