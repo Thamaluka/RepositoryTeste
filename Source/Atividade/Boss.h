@@ -3,16 +3,16 @@
 #pragma once
 
 #include "GameFramework/Actor.h"
-#include "ProjectileActor.generated.h"
+#include "Boss.generated.h"
 
 UCLASS()
-class ATIVIDADE_API AProjectileActor : public AActor
+class ATIVIDADE_API ABoss : public AActor
 {
 	GENERATED_BODY()
 	
 public:	
 	// Sets default values for this actor's properties
-	AProjectileActor();
+	ABoss();
 
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -21,12 +21,11 @@ public:
 	virtual void Tick( float DeltaSeconds ) override;
 
 private:
+	UPROPERTY(EditAnywhere)
+		UBoxComponent* Root;
+	UPROPERTY(EditAnywhere)
+		UStaticMeshComponent* MeshComp;
 
-	USphereComponent* Root;
-	UStaticMeshComponent* MeshComp;
-	UParticleSystemComponent* Particle;
-	UProjectileMovementComponent* ProjectileMovement;
-
-	float DefaultZ;
+	int Count;
 	
 };
