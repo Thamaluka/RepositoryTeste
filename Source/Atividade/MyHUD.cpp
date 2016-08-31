@@ -6,6 +6,7 @@
 #include "Engine/Canvas.h"
 #include "Kismet/GameplayStatics.h"
 #include "MyCharacter.h"
+#include "Coletavel.h"
 
 
 AMyHUD::AMyHUD() {
@@ -17,7 +18,7 @@ AMyHUD::AMyHUD() {
 	}
 
 	static ConstructorHelpers::FObjectFinder<UTexture2D>
-		Texture(TEXT("Texture2D'/Game/StarterContent/Textures/T_Brick_Clay_Beveled_D.T_Brick_Clay_Beveled_D'"));
+		Texture(TEXT("Texture2D'/Game/StarterContent/Textures/vidas.vidas'"));
 	if (Texture.Succeeded()) {
 		MyTexture = Texture.Object;
 	}
@@ -31,17 +32,44 @@ void AMyHUD::DrawHUD() {
 	FVector2D ScreenDimensions = FVector2D(Canvas->SizeX,Canvas->SizeY);
 	
 	AMyCharacter* MyCharacter = Cast<AMyCharacter>(UGameplayStatics::GetPlayerPawn(this, 0));
+	AColetavel* Coletavel = Cast<AColetavel>(UGameplayStatics::GetPlayerPawn(this,0));
 
 	FString LifeString = FString::Printf(TEXT("Life: %d"),MyCharacter->GetLife());
-	/*
-	DrawTextureSimple(MyTexture, 200, 50, 1.0f, false);
+	FString Coletaveis = FString::Printf(TEXT("Coletaveis: %d"), Coletavel->GetQntColeta());
 
+
+	//Vidas Personagem
+
+	int LifeChar = MyCharacter->GetLife();
+	
+	if (LifeChar == 3) {
+		DrawTextureSimple(MyTexture, 50, 50, 0.3f, false);
+		DrawTextureSimple(MyTexture, 80, 50, 0.3f, false);
+		DrawTextureSimple(MyTexture, 110, 50, 0.3f, false);
+	}
+
+	if (LifeChar == 2){
+		 DrawTextureSimple(MyTexture, 50, 50, 0.3f, false);
+		 DrawTextureSimple(MyTexture, 80, 50, 0.3f, false);
+	} 
+
+	if(LifeChar == 1){
+		 DrawTextureSimple(MyTexture, 50, 50, 0.3f, false);
+	 }	
+
+
+
+	
+
+	/*
 	DrawTexture(MyTexture, 400, 50, MyCharacter->GetLife(),
 	MyTexture->GetSizeY(), 200, 200, MyCharacter->GetLife(),
 	MyTexture->GetSizeY(), FLinearColor::White,
 	EBlendMode::BLEND_Opaque, 1.0f, false, 0.0f, FVector2D::ZeroVector);
 	*/
-	DrawText(LifeString, FColor::Black, 50, 50, HUDFont);
+	
+	//DrawText(LifeString, FColor::Black, 50, 50, HUDFont);
+	//DrawText(Coletaveis, FColor::Black, 50, 50, HUDFont);
 
 	
 

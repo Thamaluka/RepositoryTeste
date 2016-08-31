@@ -41,8 +41,17 @@ void AColetavel::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* Oth
 
 		AMyCharacter* MyCharacter = Cast<AMyCharacter>(OtherActor);
 		MyCharacter->SetColeta(true);
+		QntColeta++;
 		Destroy();
 
 	}
 }
 
+
+void AColetavel::SetQntColeta(int Coletaveis) {
+	QntColeta = Coletaveis;
+}
+
+int AColetavel::GetQntColeta() {
+	return QntColeta;
+}

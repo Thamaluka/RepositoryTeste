@@ -21,12 +21,17 @@ public:
 	// Called every frame
 	virtual void Tick( float DeltaSeconds ) override;
 
+	void SetQntColeta(int QntGet);
+	int GetQntColeta();
+
 private:
 
 	UPROPERTY(EditAnywhere)
 		UShapeComponent* Root;
 	UPROPERTY(EditAnywhere)
 		UStaticMeshComponent* MeshComp;
+
+	int QntColeta;
 
 	UFUNCTION()
 		void OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);

@@ -83,11 +83,6 @@ void AMyCharacter::MoveRight(float Value) {
 
 		FVector Right(0, 1, 0);
 		AddMovementInput(Right, Value);
-
-		FRotator Atual = MeshComp->GetComponentRotation();
-		FRotator PosZ = FRotator::MakeFromEuler(FVector(0, 0,1));
-		//MeshComp->SetWorldRotation(Atual + (PosZ * Value * 10));
-		ArrowComp->SetWorldRotation(Atual + (PosZ * Value * 10));
 		
 }
 
