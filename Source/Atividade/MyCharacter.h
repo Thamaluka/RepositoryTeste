@@ -47,7 +47,7 @@ private:
 	UPROPERTY(EditAnywhere)
 		UArrowComponent* ArrowComp;
 	UPROPERTY(EditAnywhere)
-		int Life = 100;
+		int Life = 3;
 
 	bool Coleta;
 	void DropProjectile();

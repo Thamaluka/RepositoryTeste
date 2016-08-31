@@ -22,7 +22,7 @@ AProjectileActor::AProjectileActor()
 		MeshComp->SetStaticMesh(Mesh.Object);
 	}
 	MeshComp->SetWorldLocation(FVector(0.0f, 0.0f, -30.0f));
-	MeshComp->SetWorldScale3D(FVector(0.5f, 0.5f, 0.5f));
+	//MeshComp->SetWorldScale3D(FVector(0.5f, 0.5f, 0.5f));
 	MeshComp->AttachTo(RootComponent);
 
 	Particle = CreateDefaultSubobject<UParticleSystemComponent>

@@ -83,12 +83,12 @@ void AMyCharacter::MoveRight(float Value) {
 
 		FVector Right(0, 1, 0);
 		AddMovementInput(Right, Value);
-/*
+
 		FRotator Atual = MeshComp->GetComponentRotation();
 		FRotator PosZ = FRotator::MakeFromEuler(FVector(0, 0,1));
-		MeshComp->SetWorldRotation(Atual + (PosZ * Value * 10));
+		//MeshComp->SetWorldRotation(Atual + (PosZ * Value * 10));
 		ArrowComp->SetWorldRotation(Atual + (PosZ * Value * 10));
-		*/
+		
 }
 
 void AMyCharacter::StartRun() {
@@ -114,8 +114,8 @@ void AMyCharacter::SetColeta(bool NewColeta) {
 
 void AMyCharacter::OnDeath() {
 	if (Life <= 0) {
-		FVector InitialLocation(-1750.0f, -1250.0f, 78.0f);
-		Life = 100;
+		FVector InitialLocation(-440.0f, -20.0f, 107.0f);
+		Life = 3;
 		SetActorLocation(InitialLocation);
 	}
 }
