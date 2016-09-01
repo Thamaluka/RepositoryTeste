@@ -30,11 +30,15 @@ public:
 	void StopRun();
 	
 
-	void SetColeta(bool NewColeta);
-	bool GetColeta();
+	void SetColeta(int NewColeta);
+	int GetColeta();
+
+	void SetAbleAtack(bool Able);
+	bool GetAbleAtack();
 
 	void SetLife(int NewLife);
 	int GetLife();
+
 	void OnDeath();
 
 private:
@@ -49,9 +53,10 @@ private:
 	UPROPERTY(EditAnywhere)
 		int Life = 3;
 
-	bool Coleta;
+	int Coleta;
 	void DropProjectile();
 	void Turn(float Value);
+	bool AbleAtack;
 	
 
 	

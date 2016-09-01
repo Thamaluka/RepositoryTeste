@@ -26,13 +26,13 @@ AProjectileActor::AProjectileActor()
 	MeshComp->SetWorldScale3D(FVector(0.3f, 0.3f, 0.3f));
 	MeshComp->AttachTo(RootComponent);
 
-	//Particle = CreateDefaultSubobject<UParticleSystemComponent>(TEXT("Particle"));
-	//Particle->bAutoActivate = true;
-	//static ConstructorHelpers::FObjectFinder<UParticleSystem>ParticleSystem(TEXT("ParticleSystem'/Game/StarterContent/Particles/P_Steam_Lit.P_Steam_Lit'"));
-	//if (ParticleSystem.Succeeded()) {
-	//	Particle->SetTemplate(ParticleSystem.Object);
-	//}
-	//Particle->SetupAttachment(RootComponent);
+	Particle = CreateDefaultSubobject<UParticleSystemComponent>(TEXT("Particle"));
+	Particle->bAutoActivate = true;
+	static ConstructorHelpers::FObjectFinder<UParticleSystem>ParticleSystem(TEXT("ParticleSystem'/Game/StarterContent/Particles/P_Steam_Lit.P_Steam_Lit'"));
+	if (ParticleSystem.Succeeded()) {
+		Particle->SetTemplate(ParticleSystem.Object);
+}
+	Particle->SetupAttachment(RootComponent);
 
 	ProjectileMovement = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("Projectile Movement"));
 	ProjectileMovement->UpdatedComponent = Root;

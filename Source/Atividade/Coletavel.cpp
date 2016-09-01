@@ -40,8 +40,7 @@ void AColetavel::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* Oth
 		(OtherComp != nullptr) && (OtherActor->IsA(AMyCharacter::StaticClass()))) {
 
 		AMyCharacter* MyCharacter = Cast<AMyCharacter>(OtherActor);
-		MyCharacter->SetColeta(true);
-		QntColeta++;
+		MyCharacter->SetColeta(MyCharacter->GetColeta()+1);
 		Destroy();
 
 	}

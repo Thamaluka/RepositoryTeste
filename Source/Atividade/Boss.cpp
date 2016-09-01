@@ -32,7 +32,7 @@ void ABoss::BeginPlay()
 void ABoss::Tick( float DeltaTime )
 {
 	Super::Tick( DeltaTime );
-
+	FVector Inicio = GetActorLocation();
 	FVector LocalizacaoAtual = GetActorLocation();
 
 	if (Count >= 0 && Count<200) {
@@ -54,6 +54,7 @@ void ABoss::Tick( float DeltaTime )
 		LocalizacaoAtual.X--;
 	}else{
 		Count = 0;
+		SetActorLocation(Inicio);
 	}
 	
 

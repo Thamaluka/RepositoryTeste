@@ -3,34 +3,31 @@
 #pragma once
 
 #include "GameFramework/Actor.h"
-#include "Boss.generated.h"
+#include "Tunks.generated.h"
 
 UCLASS()
-class ATIVIDADE_API ABoss : public AActor
+class ATIVIDADE_API ATunks : public AActor
 {
 	GENERATED_BODY()
 	
 public:	
 	// Sets default values for this actor's properties
-	ABoss();
+	ATunks();
 
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 	
 	// Called every frame
 	virtual void Tick( float DeltaSeconds ) override;
-
-	void SetBossLife(int NewLife);
-	int GetBossLife();
-
 private:
+
 	UPROPERTY(EditAnywhere)
 		UBoxComponent* Root;
 	UPROPERTY(EditAnywhere)
 		UStaticMeshComponent* MeshComp;
 
-	int Count;
-	int BossLife;
+	int Cont;
+	void DropProjectile();
 	
 	
 };

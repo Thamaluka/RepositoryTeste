@@ -72,11 +72,8 @@ void AMyCharacter::SetupPlayerInputComponent(class UInputComponent* InputCompone
 
 
 void AMyCharacter::MoveForward(float Value) {
-
-	FVector PosAtual = GetActorLocation();
-	FVector Frente = GetActorForwardVector();
-	SetActorLocation(PosAtual + (Frente*Value) * 10);
-
+	FVector Forward(1, 0, 0);
+	AddMovementInput(Forward, Value);
 }
 
 void AMyCharacter::MoveRight(float Value) {
@@ -103,9 +100,31 @@ int AMyCharacter::GetLife() {
 	return Life;
 }
 
-void AMyCharacter::SetColeta(bool NewColeta) {
+
+void AMyCharacter::SetColeta(int NewColeta) {
 	Coleta = NewColeta;
 }
+
+int AMyCharacter::GetColeta() {
+	if (Coleta==10)
+	{
+		AbleAtack = true;
+	}
+	return Coleta;
+}
+
+bool AMyCharacter::GetAbleAtack() {
+	return AbleAtack;
+}
+
+void AMyCharacter::SetAbleAtack(bool Able) {
+	AbleAtack = Able;
+
+}
+
+
+
+
 
 void AMyCharacter::OnDeath() {
 	if (Life <= 0) {
@@ -113,10 +132,6 @@ void AMyCharacter::OnDeath() {
 		Life = 3;
 		SetActorLocation(InitialLocation);
 	}
-}
-
-bool AMyCharacter::GetColeta() {
-	return Coleta;
 }
 
 void AMyCharacter::DropProjectile() {
