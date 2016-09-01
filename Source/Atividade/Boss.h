@@ -27,5 +27,6 @@ private:
 		UStaticMeshComponent* MeshComp;
 
 	int Count;
+	int BossLife();
 	
 };

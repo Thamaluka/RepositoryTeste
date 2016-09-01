@@ -3,6 +3,7 @@
 #include "Atividade.h"
 #include "SobiEDesce.h"
 #include "MyCharacter.h"
+#include "ProjectileActor.h"
 
 // Sets default values
 ASobiEDesce::ASobiEDesce()
@@ -59,6 +60,14 @@ void ASobiEDesce::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* Ot
 		MyCharacter->SetLife(MyCharacter->GetLife() - DamageAmount);
 		MyCharacter->OnDeath();
 	}
+
+	if ((OtherActor != nullptr) && (OtherActor != this) &&
+		(OtherComp != nullptr) && (OtherActor->IsA(AProjectileActor::StaticClass()))) {
+
+		AProjectileActor* Projectile = Cast<AProjectileActor>(OtherActor);
+		Destroy();
+	}
+
 }
 
 

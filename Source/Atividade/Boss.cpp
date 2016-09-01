@@ -35,8 +35,25 @@ void ABoss::Tick( float DeltaTime )
 
 	FVector LocalizacaoAtual = GetActorLocation();
 
-	if (Count >= 0 && Count<50) {
+	if (Count >= 0 && Count<200) {
 		LocalizacaoAtual.Y++;
+	}
+	else if (Count>=200 && Count<400) {
+		LocalizacaoAtual.X++;
+	}
+	else if (Count>=400 && Count <900) {
+		LocalizacaoAtual.Y++;
+	}
+	else if (Count >= 900 && Count <1100) {
+		LocalizacaoAtual.X++;
+	}
+	else if (Count >= 1100 && Count <1800) {
+		LocalizacaoAtual.Y--;
+	}
+	else if (Count >= 1800 && Count <2100) {
+		LocalizacaoAtual.X--;
+	}else{
+		Count = 0;
 	}
 	
 
