@@ -19,6 +19,7 @@ ABoss::ABoss()
 	MeshComp->AttachTo(RootComponent);
 
 	Count = 0;
+	BossLife = 10;
 }
 
 // Called when the game starts or when spawned
