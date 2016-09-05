@@ -10,7 +10,7 @@ AMyCharacter::AMyCharacter()
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-	Coleta = false;
+
 	GetCapsuleComponent()->bGenerateOverlapEvents = true;
 
 	MeshComp = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("MeshComp"));
@@ -77,7 +77,6 @@ void AMyCharacter::MoveForward(float Value) {
 }
 
 void AMyCharacter::MoveRight(float Value) {
-
 		FVector Right(0, 1, 0);
 		AddMovementInput(Right, Value);
 		
@@ -123,9 +122,6 @@ void AMyCharacter::SetAbleAtack(bool Able) {
 }
 
 
-
-
-
 void AMyCharacter::OnDeath() {
 	if (Life <= 0) {
 		FVector InitialLocation(-440.0f, -20.0f, 107.0f);
@@ -153,4 +149,5 @@ void AMyCharacter::Turn(float Value) {
 	FRotator NewRotation = ArrowComp->GetComponentRotation();
 	NewRotation.Yaw += Value;
 	ArrowComp->SetWorldRotation(NewRotation);
+	
 }

@@ -25,12 +25,19 @@ public:
 
 private:
 	UPROPERTY(EditAnywhere)
-		UBoxComponent* Root;
+		UShapeComponent* Root;
 	UPROPERTY(EditAnywhere)
 		UStaticMeshComponent* MeshComp;
+	UPROPERTY(EditAnywhere)
+		float DamageAmount = 1;
 
 	int Count;
 	int BossLife;
+	FVector Inicio;
+	
+
+	UFUNCTION()
+		void OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 	
 	
 };

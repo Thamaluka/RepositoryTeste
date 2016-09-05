@@ -27,7 +27,8 @@ AProjectileActor::AProjectileActor()
 	MeshComp->AttachTo(RootComponent);
 
 	Particle = CreateDefaultSubobject<UParticleSystemComponent>(TEXT("Particle"));
-	Particle->bAutoActivate = true;
+
+	//Particle->bAutoActivate = true;
 	static ConstructorHelpers::FObjectFinder<UParticleSystem>ParticleSystem(TEXT("ParticleSystem'/Game/StarterContent/Particles/P_Steam_Lit.P_Steam_Lit'"));
 	if (ParticleSystem.Succeeded()) {
 		Particle->SetTemplate(ParticleSystem.Object);
