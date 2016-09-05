@@ -36,6 +36,9 @@ public:
 	void SetAbleAtack(bool Able);
 	bool GetAbleAtack();
 
+	void SetTiro(bool Bala);
+	bool GetTiro();
+
 	void SetLife(int NewLife);
 	int GetLife();
 
@@ -57,6 +60,7 @@ private:
 	void DropProjectile();
 	void Turn(float Value);
 	bool AbleAtack;
+	bool Tiro;
 	
 
 	

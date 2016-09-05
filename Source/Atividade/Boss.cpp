@@ -86,18 +86,31 @@ void ABoss::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherAct
 
 		AMyCharacter* MyCharacter = Cast<AMyCharacter>(OtherActor);
 		MyCharacter->SetLife(0);
+		
 	}
 
+
+	//Colisao do Boss com o tiro
 	if ((OtherActor != nullptr) && (OtherActor != this) &&
 		(OtherComp != nullptr) && (OtherActor->IsA(AProjectileActor::StaticClass()))) {
 		
 		AProjectileActor* Projectile = Cast<AProjectileActor>(OtherActor);
-		
-		SetBossLife(GetBossLife()-1);
 
-		
-		
+		SetBossLife(GetBossLife() - 1);
 	}
-
 }
 
+
+void ABoss::DropProjectile() {
+	FActorSpawnParameters SpawnParameters;
+	UWorld* World = GetWorld();
+	if (World != nullptr) {
+		FRotator Rotation = MeshComp->GetComponentRotation();
+		AProjectileActor* Proj = World->SpawnActor<AProjectileActor>
+			(GetActorLocation(), Rotation,
+				SpawnParameters);
+		if (Proj != nullptr) {
+			UE_LOG(LogTemp, Warning, TEXT("Spawn OK!"));
+		}
+	}
+}

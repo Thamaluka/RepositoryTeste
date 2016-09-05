@@ -2,6 +2,8 @@
 
 #include "Atividade.h"
 #include "ProjectileActor.h"
+#include "MyCharacter.h"
+
 
 
 // Sets default values
@@ -12,6 +14,7 @@ AProjectileActor::AProjectileActor()
 
 	PrimaryActorTick.bCanEverTick = true;
 	Root = CreateDefaultSubobject<USphereComponent>(TEXT("Root"));
+	Root->OnComponentBeginOverlap.AddDynamic(this, &AProjectileActor::OnOverlapBegin);
 	Root->InitSphereRadius(15.0f);
 	RootComponent = Root;
 
@@ -58,3 +61,16 @@ void AProjectileActor::Tick( float DeltaTime )
 
 }
 
+
+void AProjectileActor::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult) {
+	if ((OtherActor != nullptr) && (OtherActor != this) &&
+		(OtherComp != nullptr) && (OtherActor->IsA(AMyCharacter::StaticClass()))) {
+
+		AMyCharacter* MyCharacter = Cast<AMyCharacter>(OtherActor);
+		if (!MyCharacter->GetTiro()) {
+			MyCharacter->SetLife(MyCharacter->GetLife() - 1);
+			MyCharacter->OnDeath();
+		}
+
+	}
+}

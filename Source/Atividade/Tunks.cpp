@@ -3,6 +3,8 @@
 #include "Atividade.h"
 #include "Tunks.h"
 #include "ProjectileActor.h"
+#include "MyCharacter.h"
+
 
 
 // Sets default values
@@ -20,6 +22,7 @@ ATunks::ATunks()
 	MeshComp->AttachTo(RootComponent);
 
 	Cont = 0;
+	
 
 }
 
@@ -35,12 +38,12 @@ void ATunks::Tick( float DeltaTime )
 {
 	Super::Tick( DeltaTime );
 
-	if (Cont > 50) {
+	if (Cont > 100) {
 		DropProjectile();
 	}
 
 	Cont++;
-
+	
 }
 
 
@@ -56,5 +59,14 @@ void ATunks::DropProjectile() {
 		if (Proj != nullptr) {
 			UE_LOG(LogTemp, Warning, TEXT("Spawn OK!"));
 		}
+	}
+}
+
+void ATunks::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult) {
+	if ((OtherActor != nullptr) && (OtherActor != this) &&
+		(OtherComp != nullptr) && (OtherActor->IsA(AProjectileActor::StaticClass()))) {
+
+		AProjectileActor* Projectile = Cast<AProjectileActor>(OtherActor);
+
 	}
 }

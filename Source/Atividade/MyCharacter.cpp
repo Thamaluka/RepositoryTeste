@@ -47,7 +47,7 @@ void AMyCharacter::BeginPlay()
 void AMyCharacter::Tick( float DeltaTime )
 {
 	Super::Tick( DeltaTime );
-
+	Tiro = false;
 
 }
 
@@ -122,8 +122,18 @@ void AMyCharacter::SetAbleAtack(bool Able) {
 }
 
 
+void AMyCharacter::SetTiro(bool Bala) {
+	Tiro = Bala;
+}
+
+bool AMyCharacter::GetTiro() {
+	return Tiro;
+}
+
+
+
 void AMyCharacter::OnDeath() {
-	if (Life <= 0) {
+	if (Life == 0) {
 		FVector InitialLocation(-440.0f, -20.0f, 107.0f);
 		Life = 3;
 		SetActorLocation(InitialLocation);
@@ -131,6 +141,7 @@ void AMyCharacter::OnDeath() {
 }
 
 void AMyCharacter::DropProjectile() {
+	Tiro = true;
 	FActorSpawnParameters SpawnParameters;
 	UWorld* World = GetWorld();
 	if (World != nullptr) {
@@ -145,7 +156,7 @@ void AMyCharacter::DropProjectile() {
 }
 
 void AMyCharacter::Turn(float Value) {
-	AddControllerYawInput(Value);
+	//AddControllerYawInput(Value);
 	FRotator NewRotation = ArrowComp->GetComponentRotation();
 	NewRotation.Yaw += Value;
 	ArrowComp->SetWorldRotation(NewRotation);
